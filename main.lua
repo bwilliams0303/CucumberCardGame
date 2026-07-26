@@ -29,10 +29,14 @@ function love.keypressed(key)
 	controls.keypressed(key)
 end
 
-function love.mousepressed(x, y, button)
-	controls.mousepressed(x, y, button)
+function love.mousepressed(x, y, button, istouch, presses)
+	controls.mousepressed(x, y, button, presses)
 end
 
 function love.mousemoved(x, y, dx, dy)
 	controls.mousemoved(x, y, dx, dy)
+end
+
+function love.mousereleased(x, y, button)
+	controls.mousereleased(x, y, button)
 end

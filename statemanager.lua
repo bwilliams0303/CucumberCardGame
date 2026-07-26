@@ -43,12 +43,16 @@ function StateManager.keypressed(key)
 	if current and current.keypressed then current:keypressed(key) end
 end
 
-function StateManager.mousepressed(x, y, button)
-	if current and current.mousepressed then current:mousepressed(x, y, button) end
+function StateManager.mousepressed(x, y, button, presses)
+	if current and current.mousepressed then current:mousepressed(x, y, button, presses) end
 end
 
 function StateManager.mousemoved(x, y, dx, dy)
 	if current and current.mousemoved then current:mousemoved(x, y, dx, dy) end
+end
+
+function StateManager.mousereleased(x, y, button)
+	if current and current.mousereleased then current:mousereleased(x, y, button) end
 end
 
 return StateManager
