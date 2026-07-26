@@ -3,10 +3,10 @@ if os.getenv("LOCAL_LUA_DEBUGGER_VSCODE") == "1" then
 end
 
 local push = require("lib.push")
-local StateManager = require("statemanager")
-local assets = require("assets")
-local window = require("window")
-local controls = require("controls")
+local StateManager = require("core.statemanager")
+local assets = require("core.assets")
+local window = require("core.window")
+local controls = require("core.controls")
 
 function love.load()
 	window.setup()

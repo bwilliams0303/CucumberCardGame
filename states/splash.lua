@@ -1,6 +1,6 @@
 local Menu = require("states.base.Menu")
 local Button = require("ui.button")
-local assets = require("assets")
+local assets = require("core.assets")
 local push = require("lib.push")
 
 local Splash = Menu:extend()
@@ -25,7 +25,7 @@ function Splash:load()
 	local buttonY = gameHeight * 0.65
 
 	self:addButton(Button(buttonX, buttonY, buttonImage, buttonScale, "START", function()
-		require("statemanager").switch("Gameplay")
+		require("core.statemanager").switch("Gameplay")
 	end))
 end
 
