@@ -21,7 +21,8 @@ function Card:new(number, suit, color)
 end
 
 function Card:draw(x, y, scale)
-	love.graphics.draw(self.front, x, y, 0, scale / self.front:getWidth(), scale / self.front:getHeight())
+	local factor = scale / self.front:getWidth()
+	love.graphics.draw(self.front, x, y, 0, factor, factor)
 end
 
 return Card

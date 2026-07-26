@@ -1,4 +1,4 @@
-local State = require("states.State")
+local State = require("states.base.State")
 local Deck = require("entities.Deck")
 
 local Gameplay = State:extend()

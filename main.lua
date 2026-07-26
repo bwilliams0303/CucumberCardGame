@@ -5,24 +5,14 @@ end
 local push = require("lib.push")
 local StateManager = require("statemanager")
 local assets = require("assets")
-local Menu = require("states.menu")
-local Gameplay = require("states.gameplay")
-
-local gameWidth, gameHeight = 1080, 720 --fixed game resolution
+local window = require("window")
+local controls = require("controls")
 
 function love.load()
-	local windowWidth, windowHeight = love.window.getDesktopDimensions()
-	if love.system.getOS() == "iOS" or love.system.getOS() == "Android" then
-		push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, { fullscreen = true, resizable = false })
-	else
-		push:setupScreen(gameWidth, gameHeight, windowWidth, windowHeight, { fullscreen = false })
-	end
-
+	window.setup()
 	assets.load()
-
-	StateManager.add("Menu", Menu())
-	StateManager.add("Gameplay", Gameplay())
-	StateManager.switch("Menu")
+	StateManager.loadAll()
+	StateManager.switch("Splash")
 end
 
 function love.update(dt)
@@ -36,19 +26,13 @@ function love.draw()
 end
 
 function love.keypressed(key)
-	StateManager.keypressed(key)
+	controls.keypressed(key)
 end
 
 function love.mousepressed(x, y, button)
-	local gx, gy = push:toGame(x, y)
-	if gx and gy then
-		StateManager.mousepressed(gx, gy, button)
-	end
+	controls.mousepressed(x, y, button)
 end
 
 function love.mousemoved(x, y, dx, dy)
-	local gx, gy = push:toGame(x, y)
-	if gx and gy then
-		StateManager.mousemoved(gx, gy, dx, dy)
-	end
+	controls.mousemoved(x, y, dx, dy)
 end

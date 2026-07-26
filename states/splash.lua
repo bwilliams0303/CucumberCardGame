@@ -1,15 +1,15 @@
-local State = require("states.State")
+local Menu = require("states.base.Menu")
 local Button = require("ui.button")
 local assets = require("assets")
 local push = require("lib.push")
 
-local Menu = State:extend()
+local Splash = Menu:extend()
 
-function Menu:new()
-	Menu.super.new(self, "Menu")
+function Splash:new()
+	Splash.super.new(self, "Splash")
 end
 
-function Menu:load()
+function Splash:load()
 	local gameWidth, gameHeight = push:getWidth(), push:getHeight()
 
 	self.title = assets.images.title
@@ -24,29 +24,19 @@ function Menu:load()
 	local buttonX = (gameWidth - buttonWidth) / 2
 	local buttonY = gameHeight * 0.65
 
-	self.startButton = Button(buttonX, buttonY, buttonImage, buttonScale, "START", function()
+	self:addButton(Button(buttonX, buttonY, buttonImage, buttonScale, "START", function()
 		require("statemanager").switch("Gameplay")
-	end)
+	end))
 end
 
-function Menu:update(dt)
-end
-
-function Menu:draw()
+function Splash:draw()
 	local gameWidth, gameHeight = push:getWidth(), push:getHeight()
 
 	love.graphics.setColor(1, 1, 1, 1)
 	love.graphics.rectangle("fill", 0, 0, gameWidth, gameHeight)
 	love.graphics.draw(self.title, self.titleX, self.titleY, 0, self.titleScale, self.titleScale)
-	self.startButton:draw()
+
+	Splash.super.draw(self)
 end
 
-function Menu:mousepressed(x, y, button)
-	self.startButton:mousepressed(x, y, button)
-end
-
-function Menu:mousemoved(x, y, dx, dy)
-	self.startButton:mousemoved(x, y)
-end
-
-return Menu
+return Splash
