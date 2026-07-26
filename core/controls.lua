@@ -1,9 +1,14 @@
 local push = require("lib.push")
 local StateManager = require("core.statemanager")
+local window = require("core.window")
 
 local controls = {}
 
 function controls.keypressed(key)
+	if key == "f11" then
+		window.toggleFullscreen()
+		return
+	end
 	StateManager.keypressed(key)
 end
 

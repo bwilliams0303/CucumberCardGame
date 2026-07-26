@@ -40,3 +40,7 @@ end
 function love.mousereleased(x, y, button)
 	controls.mousereleased(x, y, button)
 end
+
+function love.resize(w, h)
+	window.resize(w, h)
+end
